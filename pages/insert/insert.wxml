@@ -41,7 +41,7 @@
                       <image class="weui-uploader__img" src="https://iocaffcdn.phphub.org/uploads/avatars/15946_1520066020.jpg!/both/100x100" mode="aspectFill" />
                   </view>
                   <view class="weui-uploader__input-box">
-                    <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                    <view class="weui-uploader__input" bindtap="updateImage"></view>
                   </view>
                 </view>
             </view>
