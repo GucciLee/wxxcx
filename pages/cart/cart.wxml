@@ -1,0 +1,66 @@
+<view class='container'>
+  <view class='shop'>
+    <view class='shop-name'>佳佳好百货店</view>
+    <!-- <view class='shop-wran'>您选择的门店与您当前所在位置符合</view> -->
+    
+    <!-- 购物袋 -->
+    <!--
+    <view class='shop-bag'>
+      <view class='title'>请选择购物袋</view>
+      <view class='bag'>
+        <view class='bag-prices'>中号 ￥ 0.20</view>
+        <view class='set-product-num'>
+          <view class='prev'>
+            <image src='/assets/images/cart/prev.svg'></image>
+          </view>
+          <input type='text' value='0'></input>
+          <view class='next'>
+            <image src='/assets/images/cart/next.svg'></image>
+          </view>
+        </view>        
+      </view>
+    </view>
+    -->
+
+    <!-- 商品列表 -->
+    <view class='product-list'>
+      
+      <view class='list' 
+        wx:for="{{product}}"
+        wx:key="productKey" 
+        wx:if="{{product}}" 
+        data-index="{{index}}"  
+        bindlongtap='product_remove'>
+        
+        <view class='li'>
+          <view class='title'>{{item.name}}</view>
+          <view class='prices'>￥{{item.price}} * {{item.num}} = {{item.price * item.num}} 元</view>
+        </view>
+        
+        <view class='set-product-num'>
+          <view class='prev' data-index="{{index}}" bindtap='product_prev'>
+            <image src='/assets/images/cart/prev.svg'></image>
+          </view>
+          <input type='text' value="{{item.num}}" readonly="{{true}}"></input>
+          <view class='next' data-index="{{index}}" bindtap='product_next'>
+            <image src='/assets/images/cart/next.svg'></image>
+          </view>
+        </view>
+        <view class='remove' data-index="{{index}}" bindtap='product_remove'>
+          <image src='/assets/images/cart/remove.svg'></image>
+        </view>        
+      </view>
+    </view>
+
+    <!-- 总价 结算 -->
+    <view class='shop-booking'>
+      <view class='scan' bindtap='go_scan'>
+        <image src='/assets/images/index/scan.svg'></image>
+      </view>
+      <view class='prices'>
+        合计:<view>￥ {{totalPrices}}</view>
+      </view>
+      <view class="booking {{product.length>0 ? 'booking-active' : ''}}" bindtap='shop_booking'>结算 ({{ totalNum }})</view>
+    </view>
+  </view>
+</view>

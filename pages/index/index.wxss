@@ -1,0 +1,39 @@
+/**index.wxss**/
+.container{
+  text-align: center;
+}
+
+.view-order{
+  color: #f33213;
+  font-weight: bold;
+}
+
+.sao-yi-sao{
+  margin: 40rpx auto 0;
+  width: 400rpx;
+  height: 400rpx;
+  background-color: #1b539e;
+  border-radius: 50%;
+  color: #ffffff;
+}
+
+.sao-yi-sao image{
+  margin-top: 90rpx;
+  width: 160rpx;
+  height: 160rpx;
+}
+.sao-yi-sao .text{
+  margin-top: 20rpx;
+  font-size: 38rpx;
+}
+
+.insert-ma{
+  margin-top: 40rpx;
+  font-weight: bold;
+  color: #1b539e;
+}
+
+.tips{
+  font-size: 26rpx;
+  margin-top: 80rpx;
+}
