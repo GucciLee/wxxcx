@@ -1,0 +1,47 @@
+<view class="page">
+    <view wx:if="{{ loggedIn }}">
+      <view class='list' bindtap='insert_product'>
+        <image src='/assets/images/user/edit.svg'></image> 
+        录入商品
+      </view>
+      <view class='list' bindtap='edit_product'>
+        <image src='/assets/images/user/edit.svg'></image>
+        编辑商品
+       </view>
+    </view>
+
+    <view wx:else class="page__bd login-wrap">
+      <view class="weui-toptips weui-toptips_warn" wx:if="{{ errorMessage }}">{{ errorMessage }}</view>
+
+      <view class="weui-cells__title">Larabbs 用户登录</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input {{ error ? 'weui-cell_warn' : ''}}">
+          <view class="weui-cell__hd">
+            <view class="weui-label">用户名</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="手机号或邮箱" bindinput="bindUsernameInput" />
+          </view>
+          <view wx:if="{{ error }}" class="weui-cell__ft">
+            <icon type="warn" size="23" color="#E64340"></icon>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input {{ error ? 'weui-cell_warn' : ''}}">
+          <view class="weui-cell__hd">
+            <view class="weui-label">密码</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="输入密码" type="password" bindinput="bindPasswordInput" />
+          </view>
+          <view wx:if="{{ error }}" class="weui-cell__ft">
+            <icon type="warn" size="23" color="#E64340"></icon>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" bindtap="submit">登录</button>
+      </view>
+    </view>
+
+  </view>

@@ -1,0 +1,58 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__bd">
+        <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+        <view class="weui-cells__title">表单</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input weui-cell_vcode">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">条码</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入条码" bindinput='bindProductCashInput'/>
+                </view>
+                <view class="weui-cell__ft">
+                    <view class="weui-vcode-btn">自动获取</view>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">商品名</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入商品名" bindinput='bindProductNameInput'/>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">价格</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入价格" bindinput='bindProductPriceInput'/>
+                </view>
+            </view>
+            
+            
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">图片上传</view>
+                </view>
+                <view class="weui-cell__bd">
+                  <view class="weui-uploader__file" bindtap="previewImage" id="https://iocaffcdn.phphub.org/uploads/avatars/15946_1520066020.jpg!/both/100x100">
+                      <image class="weui-uploader__img" src="https://iocaffcdn.phphub.org/uploads/avatars/15946_1520066020.jpg!/both/100x100" mode="aspectFill" />
+                  </view>
+                  <view class="weui-uploader__input-box">
+                    <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                  </view>
+                </view>
+            </view>
+        </view>
+
+        
+        <view class="weui-cells__tips">底部说明文字底部说明文字</view>
+
+
+        <view class="weui-btn-area">
+            <button class="weui-btn" type="primary" bindtap="submit">确定</button>
+        </view>
+    </view>
+</view>

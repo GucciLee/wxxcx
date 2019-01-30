@@ -1,0 +1,10 @@
+/* pages/insert/insert.wxss */
+.weui-cell__bd image{
+  width: 77px;
+  height: 77px;
+  margin: 30rpx 0 30rpx 30rpx;
+  border: 1px solid #ccc;
+}
+.weui-uploader__input-box{
+  margin: 30rpx 0 30rpx 0;
+}

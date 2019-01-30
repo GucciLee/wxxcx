@@ -1,8 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/cart/cart"
+    "pages/cart/cart",
+    "pages/user/user",
+    "pages/insert/insert"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -24,7 +25,7 @@
         "selectedIconPath": "assets/images/home_active.png"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/user/user",
         "text": "我的",
         "iconPath": "assets/images/person2.png",
         "selectedIconPath": "assets/images/person2_active.png"

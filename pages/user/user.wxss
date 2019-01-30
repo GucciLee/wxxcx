@@ -1,0 +1,17 @@
+/* pages/user/user.wxss */
+.login-wrap {
+  margin-top: 50px;
+}
+
+.list{
+  padding: 10rpx 40rpx;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+}
+
+.list image{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}

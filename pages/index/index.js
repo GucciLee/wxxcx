@@ -11,7 +11,7 @@ Page({
   },
   /** 监听页面加载 */
   onLoad: function () {
-    
+    console.log(this.userInfo)
   },
   /** 页面初次渲染完成 */
   onReady: function(){
