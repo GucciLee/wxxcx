@@ -22,12 +22,6 @@ Page({
     // 登录
     if (wx.getStorageSync('access_token')) {
       this.setData({loggedIn: true})
-    }else{
-      api.login({}, (res) => {
-        if (wx.getStorageSync('access_token')) {
-          this.setData({ loggedIn: true })
-        }
-      });
     }
   },
   insert_product(){

@@ -30,21 +30,16 @@ const request = async (options, callback = false, showLoading = true) => {
     wx.hideLoading()
   }
 
-  if (response.statusCode == 401){
-    wx.showModal({
-      title: '提示',
-      showCancel: false,
-      content: '您不具有访问权限',
-      success(res){
-        if (res.confirm){
-          wx.clearStorage()
-          wx.switchTab({
-            url: '/pages/user/user'
-          })
-        }
-      }
-    })
-  }
+  /*if (response.statusCode >= 400){
+    if (response.data.message != ''){
+      wx.showModal({
+        title: '提示',
+        showCancel: false,
+        content: response.data.message
+      })
+      return;
+    }
+  }*/
 
   // 服务器异常后给与提示
   if (response.statusCode === 500) {
@@ -52,6 +47,7 @@ const request = async (options, callback = false, showLoading = true) => {
       title: '提示',
       content: '服务器错误，请联系管理员或重试'
     })
+    return;
   }
   if (callback){
     return callback(response);
@@ -75,16 +71,18 @@ const login = async (params = {}, callback = false) => {
     method: 'POST'
   })
 
-  // 登录成功，记录 token 信息
-  if (authResponse.statusCode === 201) {
-    wx.setStorageSync('access_token', authResponse.data.access_token)
-    wx.setStorageSync('access_token_expired_at', new Date().getTime() + authResponse.data.expires_in * 1000)
-  }
+  if (authResponse){
+    // 登录成功，记录 token 信息
+    if (authResponse.statusCode === 201) {
+      wx.setStorageSync('access_token', authResponse.data.access_token)
+      wx.setStorageSync('access_token_expired_at', new Date().getTime() + authResponse.data.expires_in * 1000)
+    }
 
-  if (callback){
-    callback(authResponse);
-  }else{
-    return authResponse
+    if (callback) {
+      callback(authResponse);
+    } else {
+      return authResponse
+    }
   }
 }
 

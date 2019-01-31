@@ -5,21 +5,85 @@ import api from '../../utils/api';
 Page({
   data: {
     showTopTips: false,
+    files: [],
     product: {
       name:'',
       cash: '',
       price: '',
-      image: ''
+      image: '',
+      image_id: ''
     },
+  },
+  reset_data: function(){
+    this.setData({
+      showTopTips: false,
+      files: [],
+      product: {
+        name: '',
+        cash: '',
+        price: '',
+        image: '',
+        image_id: ''
+      }
+    })
   },
   // 表单提交
   submit: function(){
+    let self = this;
     api.authRequest({
       url: 'products',
       method: 'POST',
       data: this.data.product
     },(res)=> {
-      console.log(res)
+      if (res.statusCode == 201 || res.statusCode == 200){
+        wx.showModal({
+          title: '提示',
+          content: '添加成功, 是否继续添加商品 ?',
+          success(res) {
+            if (res.confirm) {
+              self.reset_data();
+            } else if (res.cancel) {
+              wx.switchTab({
+                url: '/pages/user/user'
+              })
+            }
+          }
+        })
+      }else{
+        console.log(res);
+        this.setData({
+          'showTopTips': res.data.errors
+        })
+        console.log(this.data.showTopTips)
+      }
+    })
+  },
+  go_scan: function(){
+    let self = this;
+    wx.scanCode({
+      onlyFromCamera: false,
+      scanType: ['qrCode', 'barCode', 'datamatrix', 'pdf417'],
+      success: function (res) {
+        // 存在条形码
+        if (res.result) {
+          self.setData({
+            'product.cash': res.result
+          })
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '扫描商品失败, 请重新扫描',
+            showCancel: false,
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: '提示',
+          content: '扫描商品失败, 请重新扫描',
+          showCancel: false,
+        })
+      }
     })
   },
   // 图片上传
@@ -38,22 +102,25 @@ Page({
           method: 'POST',
           name: 'image',
           formData: {
-            type: 'avatar'
+            type: 'product'
           },
           filePath: product_img,
-          complete: function (imageResponse){
-            console.log(imageResponse)
+          success: function (imageResponse){
             // 上传成功成功记录数据
-            if (imageResponse.statusCode === 201) {
+            if (imageResponse.statusCode === 201 || imageResponse.statusCode === 200) {
               // 小程序上传结果没有做 JSON.parse，需要手动处理
               let responseData = JSON.parse(imageResponse.data)
-              console.log(responseData);
+
+              that.data.product.image_id = responseData.id;
+
+              that.setData({
+                files: image.tempFilePaths,
+                'product.image': responseData.path
+              });
             }
           }
         })
-        /*that.setData({
-          files: that.data.files.concat(res.tempFilePaths)
-        });*/
+        
       }
     })
   },

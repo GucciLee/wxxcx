@@ -1,6 +1,13 @@
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
     <view class="page__bd">
-        <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+
+        <view class="weui-toptips weui-toptips_warn" 
+          wx:if="{{showTopTips}}"
+          wx:for="{{showTopTips}}" wx:key="item"
+          >
+          {{item}}
+        </view>
+
         <view class="weui-cells__title">表单</view>
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell weui-cell_input weui-cell_vcode">
@@ -8,10 +15,10 @@
                     <view class="weui-label">条码</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" placeholder="请输入条码" bindinput='bindProductCashInput'/>
+                    <input class="weui-input" placeholder="请输入条码" bindinput='bindProductCashInput' value='{{product.cash}}'/>
                 </view>
                 <view class="weui-cell__ft">
-                    <view class="weui-vcode-btn">自动获取</view>
+                    <view class="weui-vcode-btn" bindtap='go_scan'>自动获取</view>
                 </view>
             </view>
             <view class="weui-cell weui-cell_input">
@@ -19,7 +26,7 @@
                     <view class="weui-label">商品名</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" placeholder="请输入商品名" bindinput='bindProductNameInput'/>
+                    <input class="weui-input" placeholder="请输入商品名" bindinput='bindProductNameInput' value='{{product.name}}'/>
                 </view>
             </view>
             <view class="weui-cell weui-cell_input">
@@ -27,7 +34,7 @@
                     <view class="weui-label">价格</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input class="weui-input" placeholder="请输入价格" bindinput='bindProductPriceInput'/>
+                    <input class="weui-input" placeholder="请输入价格" bindinput='bindProductPriceInput'  value='{{product.price}}'/>
                 </view>
             </view>
             
@@ -37,9 +44,12 @@
                     <view class="weui-label">图片上传</view>
                 </view>
                 <view class="weui-cell__bd">
-                  <view class="weui-uploader__file" bindtap="previewImage" id="https://iocaffcdn.phphub.org/uploads/avatars/15946_1520066020.jpg!/both/100x100">
-                      <image class="weui-uploader__img" src="https://iocaffcdn.phphub.org/uploads/avatars/15946_1520066020.jpg!/both/100x100" mode="aspectFill" />
+                  <view class="weui-uploader__file" 
+                    wx:if="{{product.image}}"
+                    bindtap="previewImage" id="{{product.image}}">
+                      <image class="weui-uploader__img" src="{{product.image}}" mode="aspectFill" />
                   </view>
+
                   <view class="weui-uploader__input-box">
                     <view class="weui-uploader__input" bindtap="updateImage"></view>
                   </view>
