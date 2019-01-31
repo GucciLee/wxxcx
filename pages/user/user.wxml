@@ -4,10 +4,14 @@
         <image src='/assets/images/user/edit.svg'></image> 
         录入商品
       </view>
+      <view class='list' bindtap='index_product'>
+        <image src='/assets/images/user/edit.svg'></image>
+        商品列表
+      </view>
       <view class='list' bindtap='edit_product'>
         <image src='/assets/images/user/edit.svg'></image>
         编辑商品
-       </view>
+      </view>
     </view>
 
     <view wx:else class="page__bd login-wrap">

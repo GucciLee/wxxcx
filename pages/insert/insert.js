@@ -58,6 +58,7 @@ Page({
       }
     })
   },
+  // 扫码条码
   go_scan: function(){
     let self = this;
     wx.scanCode({

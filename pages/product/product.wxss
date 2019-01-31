@@ -1,0 +1,81 @@
+/* pages/product/product.wxss */
+.mask-bg{
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  overflow-y: auto;
+}
+.edit-product{
+  width: 100%;
+  background: #fff;
+  margin: 0 auto;
+  min-height: 100%;
+}
+.weui-cell__bd image{
+  width: 77px;
+  height: 77px;
+  margin: 30rpx 0 30rpx 30rpx;
+  border: 1px solid #ccc;
+}
+.weui-uploader__input-box{
+  margin: 30rpx 0 30rpx 0;
+}
+
+
+
+.search{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0 10rpx;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+}
+.search input{
+  width: 100%;
+}
+
+.thead{
+  position: fixed;
+  top: 70rpx;
+  left: 0;
+  right: 0;
+  background: #27ccc0;
+  color: #fff;
+  text-align: center;
+}
+.tbody{
+  margin-top: 140rpx;
+}
+
+.thead view, .tbody .list view{
+  display: inline-block;
+  height: 70rpx;
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.tbody .list view{
+  padding-left: 6rpx;
+}
+
+.thead view:nth-child(1), .tbody .list view:nth-child(1){
+  width: 30%;
+}
+.thead view:nth-child(2), .tbody .list view:nth-child(2){
+  width: 50%;
+}
+.thead view:nth-child(3), .tbody .list view:nth-child(3){
+  width: 20%;
+}
+
+.tbody .list:nth-child(odd){
+  background: #F4F4F4;
+}

@@ -29,6 +29,11 @@ Page({
       url: '../insert/insert'
     })
   },
+  index_product() {
+    wx.navigateTo({
+      url: '../product/product'
+    })
+  },
   edit_product(){
     wx.navigateTo({
       url: '../insert/insert'
