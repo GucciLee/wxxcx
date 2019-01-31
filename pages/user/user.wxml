@@ -6,11 +6,22 @@
       </view>
       <view class='list' bindtap='index_product'>
         <image src='/assets/images/user/edit.svg'></image>
-        商品列表
+        商品管理
       </view>
-      <view class='list' bindtap='edit_product'>
+
+      <view class='product-jiasu'>产品优化</view>
+      <view class='list' bindtap='build_static_json'>
         <image src='/assets/images/user/edit.svg'></image>
-        编辑商品
+        重置静态文件
+      </view>
+      <view class='list' bindtap='index_product'>
+        <image src='/assets/images/user/edit.svg'></image>
+        重置本地缓存数据
+      </view>
+
+      <view class='list' bindtap='index_product'>
+        <image src='/assets/images/user/edit.svg'></image>
+        退出登录
       </view>
     </view>
 

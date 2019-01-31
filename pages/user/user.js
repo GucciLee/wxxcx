@@ -39,6 +39,20 @@ Page({
       url: '../insert/insert'
     })
   },
+  build_static_json(){
+    api.request({
+      'url': 'products/build_static_json',
+      'method': 'GET'
+    }, (res)=> {
+      if (res.data.status_code === 201){
+        wx.showModal({
+          title: '提示',
+          content: '静态文件重置成功',
+          showCancel: false
+        })
+      }
+    })
+  },
   // 绑定用户名 input 变化
   bindUsernameInput(e) {
     this.username = e.detail.value

@@ -18,7 +18,7 @@
                     <input class="weui-input" placeholder="请输入条码" bindinput='bindProductCashInput' value='{{product.cash}}'/>
                 </view>
                 <view class="weui-cell__ft">
-                    <view class="weui-vcode-btn" bindtap='go_scan'>自动获取</view>
+                    <view class="weui-vcode-btn" bindtap='go_scan'>扫描条码</view>
                 </view>
             </view>
             <view class="weui-cell weui-cell_input">

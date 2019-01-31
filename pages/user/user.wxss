@@ -15,3 +15,7 @@
   height: 40rpx;
   margin-right: 20rpx;
 }
+
+.product-jiasu{
+  padding: 100rpx 40rpx 0;
+}

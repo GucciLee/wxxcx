@@ -50,11 +50,9 @@ Page({
           }
         })
       }else{
-        console.log(res);
         this.setData({
           'showTopTips': res.data.errors
         })
-        console.log(this.data.showTopTips)
       }
     })
   },
