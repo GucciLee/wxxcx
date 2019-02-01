@@ -26,7 +26,7 @@ Page({
     let self = this;
     wx.scanCode({
       onlyFromCamera: false,
-      scanType: ['qrCode', 'barCode', 'datamatrix', 'pdf417'],
+      scanType: ['qrCode', 'barCode'],
       success: function (res) {
         console.log(res.result);
         // 存在条形码
