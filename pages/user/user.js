@@ -22,23 +22,23 @@ Page({
     // 登录
     if (wx.getStorageSync('access_token')) {
       this.setData({loggedIn: true})
+    }else{
+      this.submit('currentParams');
     }
   },
+  // 新增产品
   insert_product(){
     wx.navigateTo({
       url: '../insert/insert'
     })
   },
+  // 产品列表
   index_product() {
     wx.navigateTo({
       url: '../product/product'
     })
   },
-  edit_product(){
-    wx.navigateTo({
-      url: '../insert/insert'
-    })
-  },
+  // 生成静态数据
   build_static_json(){
     api.request({
       'url': 'products/build_static_json',
@@ -53,6 +53,10 @@ Page({
       }
     })
   },
+  // 清除本地缓存数据
+  clear_local_store(){
+    wx.clearStorage();
+  },
   // 绑定用户名 input 变化
   bindUsernameInput(e) {
     this.username = e.detail.value
@@ -62,27 +66,30 @@ Page({
     this.password = e.detail.value
   },
   // 表单提交
-  submit(){
+  submit(e, params = {}){
+    let currentParams = false;
+    if (e === 'currentParams'){
+      currentParams = true;
+    }
     // 提交时重置错误
     this.setData({
-      'error': false
+      'error': false,
+      'errorMessage': ''
     })
 
-    this.setData({
-      'errorMessage': ''
-    });
+    if (!currentParams){
+      if (!this.username || !this.password) {
+        this.setData({
+          'errorMessage': '请填写「用户名」和「密码」'
+        });
+        return
+      }
 
-    if (!this.username || !this.password) {
-      this.setData({
-        'errorMessage': '请填写账户名和密码'
-      });
-      return
-    }
-
-    // 获取用户名和密码
-    let params = {
-      username: this.username,
-      password: this.password
+      // 获取用户名和密码
+      params = {
+        username: this.username,
+        password: this.password
+      }
     }
 
     wx.showLoading({
@@ -91,9 +98,32 @@ Page({
 
     // 登录
     api.login(params, (res)=>{
-      this.setData({
-        loggedIn: true
-      })
+      if (res.data.access_token){
+        this.setData({
+          loggedIn: true
+        })
+      }else{
+        if(!currentParams){
+          let error = '登录失败, 具体原因请联系管理员';
+          if (res.data.message) {
+            error = res.data.message;
+          } 
+          this.setData({
+            'errorMessage': error,
+            'error': false
+          });
+        }
+      }
     });
   },
+  // 退出登录
+  logout(){
+    wx.hideLoading();
+    this.clear_local_store();
+    this.setData({
+      loggedIn: false,
+      errorMessage: '',
+      error: false
+    })
+  }
 })
