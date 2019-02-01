@@ -1,3 +1,8 @@
+#modal input{
+  border: 1px solid #ccc;
+  padding:10rpx 20rpx;
+}
+
 .container{
   padding: 0;
   background-color: #efefef;
@@ -12,7 +17,7 @@
   color: #fff;
   text-align: center;
   font-size: 30rpx;
-  line-height: 50rpx;
+  padding: 20rpx 0;
 }
 .shop-wran{
   background-color: #fdfeec;
@@ -126,6 +131,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.shop-booking .hand-input{
+  position:absolute;
+  left:31%;
+  font-size:28rpx;
+  display:flex;
+  top:-60%;
+  border:1px solid #ccc;
+  padding:4rpx 20rpx;
+  border-radius:30rpx;
+
+}
+.shop-booking .hand-input view{
+  padding-left: 10rpx;
+  color: #1a73e8;
 }
 .shop-booking .scan{
   width: 150rpx;

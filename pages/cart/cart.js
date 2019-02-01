@@ -5,6 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    hiddenmodalput: true,
+    handInput: '',
     product: [],
     totalNum: 0,
     totalPrices: '0.00'
@@ -29,37 +31,7 @@ Page({
         console.log(res.result);
         // 存在条形码
         if (res.result){
-          api.request({
-            url: `products/${res.result}`,
-            method: 'get',
-          }, (res)=> {
-            let data = res.data;
-            if (res.statusCode == 200 || res.statusCode == 201){
-              if(!Array.isArray(data)){
-                let _keys = Object.keys(res.data);
-                data = [data[_keys[0]]];
-              }
-              
-              if (data.length > 0){
-                self.setData({
-                  product: data.concat(self.data.product)
-                })
-                self._computed_prices();
-              }else{
-                wx.showModal({
-                  title: '提示',
-                  content: '未录入此商品 !',
-                  showCancel: false,
-                })
-              }
-            }else{
-              wx.showModal({
-                title: '提示',
-                content: '未录入此商品 !',
-                showCancel: false,
-              })
-            }
-          })
+          self.submit(res.result);
         } else {
           wx.showModal({
             title: '提示',
@@ -76,6 +48,68 @@ Page({
         })
       }
     })
+  },
+
+  // 手动输入
+  handInputSubmit: function(e){
+    this.setData({
+      hiddenmodalput: true
+    })
+    this.submit(this.data.handInput)
+  },
+
+  // 提交数据
+  submit(cach_code){
+    let self = this;
+    api.request({
+      url: `products/${cach_code}`,
+      method: 'get',
+    }, (res) => {
+      let data = res.data;
+      if (res.statusCode == 200 || res.statusCode == 201) {
+        if (!Array.isArray(data)) {
+          let _keys = Object.keys(res.data);
+          data = [data[_keys[0]]];
+        }
+
+        if (data.length > 0) {
+          self.setData({
+            product: data.concat(self.data.product)
+          })
+          self._computed_prices();
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '未录入此商品 !',
+            showCancel: false,
+          })
+        }
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: '未录入此商品 !',
+          showCancel: false,
+        })
+      }
+    })
+  },
+  // 手动输入 弹出框  
+  handInputToggle: function () {
+    this.setData({
+      hiddenmodalput: !this.data.hiddenmodalput
+    })
+  },
+  // 手动输入 弹出框 取消按钮
+  handInputCancel: function () {
+    this.setData({
+      hiddenmodalput: true
+    });
+  },
+  // 为手动输入条码赋值
+  handInputSet(e){
+    this.setData({
+      handInput: e.detail.value
+    });
   },
   /**
    * 减少一条 当前商品

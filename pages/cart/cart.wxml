@@ -1,6 +1,11 @@
+<modal id="modal" hidden="{{hiddenmodalput}}" title="请输入商品条码" confirm-text="提交" cancel-text="取消" bindcancel="handInputCancel" bindconfirm="handInputSubmit">  
+  <input type='text' placeholder="请输入商品条码" bindinput='handInputSet' auto-focus/>
+</modal>
+
+
 <view class='container'>
   <view class='shop'>
-    <view class='shop-name'>佳佳好百货店</view>
+    <view class='shop-name'>GucciLee@163.com</view>
     <!-- <view class='shop-wran'>您选择的门店与您当前所在位置符合</view> -->
     
     <!-- 购物袋 -->
@@ -33,7 +38,8 @@
         bindlongtap='product_remove'>
         
         <view class='li'>
-          <view class='title'>{{item.name}}</view>
+          <view class='title'>商品: {{item.name}}</view>
+          <view class='title'>条码: {{item.cash}}</view>
           <view class='prices'>￥{{item.price}} * {{item.num}} = {{item.price * item.num}} 元</view>
         </view>
         
@@ -54,6 +60,7 @@
 
     <!-- 总价 结算 -->
     <view class='shop-booking'>
+      <view class='hand-input' bindtap='handInputToggle'>扫不出来? 试试 <view>输入条形码</view></view>
       <view class='scan' bindtap='go_scan'>
         <image src='/assets/images/index/scan.svg'></image>
       </view>

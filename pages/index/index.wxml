@@ -11,7 +11,7 @@
     </view>
 
     <!--手动输入条形码-->
-    <view class='insert-ma'>手动输入条形码</view>
+    <!-- <view class='insert-ma'>手动输入条形码</view> -->
 
     <view class='tips'>扫商品条形码, 享优质生活</view>
   </view>
