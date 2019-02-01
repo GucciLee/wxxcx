@@ -3,9 +3,8 @@
     "pages/index/index",
     "pages/cart/cart",
     "pages/user/user",
-    "pages/insert/insert",
-    "pages/edit/edit",
-    "pages/product/product"
+    "pages/product/product",
+    "pages/insert/insert"
   ],
   "window": {
     "backgroundTextStyle": "light",
