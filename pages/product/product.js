@@ -131,6 +131,7 @@ Page({
   // 表单提交
   submit: function () {
     let self = this;
+    this.setData({ 'showTopTips': false })
     api.authRequest({
       url: 'products/' + self.data.currentId,
       method: 'POST',

@@ -1,26 +1,27 @@
 <view class="page">
     <view wx:if="{{ loggedIn }}">
+      <view class='product-jiasu'>商品管理</view>
       <view class='list' bindtap='insert_product'>
         <image src='/assets/images/user/edit.svg'></image> 
         录入商品
       </view>
       <view class='list' bindtap='index_product'>
-        <image src='/assets/images/user/edit.svg'></image>
-        商品管理
+        <image src='/assets/images/user/list.svg'></image>
+        商品列表
       </view>
 
       <view class='product-jiasu'>产品优化</view>
       <view class='list' bindtap='build_static_json'>
-        <image src='/assets/images/user/edit.svg'></image>
+        <image src='/assets/images/user/reset.svg'></image>
         重置静态文件
       </view>
       <view class='list' bindtap='clear_local_store'>
-        <image src='/assets/images/user/edit.svg'></image>
+        <image src='/assets/images/user/clear.svg'></image>
         清理本地缓存
       </view>
 
       <view class='list' bindtap='logout'>
-        <image src='/assets/images/user/edit.svg'></image>
+        <image src='/assets/images/user/logout.svg'></image>
         退出登录
       </view>
     </view>

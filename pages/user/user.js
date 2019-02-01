@@ -40,22 +40,35 @@ Page({
   },
   // 生成静态数据
   build_static_json(){
-    api.request({
-      'url': 'products/build_static_json',
-      'method': 'GET'
-    }, (res)=> {
-      if (res.data.status_code === 201){
-        wx.showModal({
-          title: '提示',
-          content: '静态文件重置成功',
-          showCancel: false
-        })
+    wx.showModal({
+      title: '提示',
+      content: '确定需要重置后台静态文件吗 ?',
+      success(res) {
+        if (res.confirm) {
+          api.request({
+            'url': 'products/build_static_json',
+            'method': 'GET'
+          }, (res) => {
+            if (res.data.status_code === 201) {
+              wx.showModal({
+                title: '提示',
+                content: '静态文件重置成功',
+                showCancel: false
+              })
+            }
+          })
+        }
       }
     })
   },
   // 清除本地缓存数据
   clear_local_store(){
     wx.clearStorage();
+    wx.showToast({
+      title: '清理成功',
+      icon: 'none',
+      duration: 2000
+    })
   },
   // 绑定用户名 input 变化
   bindUsernameInput(e) {
@@ -118,12 +131,32 @@ Page({
   },
   // 退出登录
   logout(){
+    let self = this;
     wx.hideLoading();
-    this.clear_local_store();
-    this.setData({
-      loggedIn: false,
-      errorMessage: '',
-      error: false
+    wx.showModal({
+      title: '提示',
+      content: '小主, 您确定要离开吗 ?',
+      success(res) {
+        if (res.confirm) {
+          self.clear_local_store();
+          self.setData({
+            loggedIn: false,
+            errorMessage: '',
+            error: false
+          })
+          wx.showToast({
+            title: '请小主一定记得回来',
+            icon: 'none',
+            duration: 2000
+          })
+        } else if (res.cancel) {
+          wx.showToast({
+            title: '欢迎小主回来',
+            icon: 'none',
+            duration: 1200
+          })
+        }
+      }
     })
   }
 })

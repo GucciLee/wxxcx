@@ -1,5 +1,6 @@
-Page({
+import api from '../../utils/api';
 
+Page({
   /**
    * 页面的初始数据
    */
@@ -27,32 +28,32 @@ Page({
       success: function (res) {
         // 存在条形码
         if (res.result){
-          wx.request({
-            url: `http://larabbs_2.test/api/products/cash/${res.result}`,
+          api.request({
+            url: `products/${res.result}`,
             method: 'get',
-            complete: function(data){
-              if (data.status){
+          }, (res)=> {
+            let data = res.data;
+            if (res.statusCode == 200 || res.statusCode == 201){
+              if(data.length > 0){
                 self.setData({
-                  product: data.data.data.concat(self.data.product)
-                  // product: self.data.product.concat(data.data.data)
+                  product: data.concat(self.data.product)
                 })
                 self._computed_prices();
-              }else if(data.message){
-                wx.showModal({
-                  title: '提示',
-                  content: data.message,
-                  showCancel: false,
-                })
               }else{
                 wx.showModal({
                   title: '提示',
-                  content: '未知错误',
+                  content: '未录入此商品 !',
                   showCancel: false,
                 })
               }
+            }else{
+              wx.showModal({
+                title: '提示',
+                content: '未录入此商品 !',
+                showCancel: false,
+              })
             }
           })
-
         } else {
           wx.showModal({
             title: '提示',
