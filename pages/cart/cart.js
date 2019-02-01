@@ -26,6 +26,7 @@ Page({
       onlyFromCamera: false,
       scanType: ['qrCode', 'barCode', 'datamatrix', 'pdf417'],
       success: function (res) {
+        console.log(res.result);
         // 存在条形码
         if (res.result){
           api.request({
@@ -34,7 +35,12 @@ Page({
           }, (res)=> {
             let data = res.data;
             if (res.statusCode == 200 || res.statusCode == 201){
-              if(data.length > 0){
+              if(!Array.isArray(data)){
+                let _keys = Object.keys(res.data);
+                data = [data[_keys[0]]];
+              }
+              
+              if (data.length > 0){
                 self.setData({
                   product: data.concat(self.data.product)
                 })

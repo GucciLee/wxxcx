@@ -2,7 +2,7 @@
 <view class="container">
   <view>
     <!--查看自助订单-->
-    <view class='view-order'>查看自助订单</view>
+    <!-- <view class='view-order'>查看自助订单</view> -->
     
     <!--扫一扫条形码-->
     <view class='sao-yi-sao' bindtap='scan_product'>

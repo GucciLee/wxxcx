@@ -25,15 +25,13 @@
   margin: 30rpx 0 30rpx 0;
 }
 
-
-
 .search{
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  padding: 0 10rpx;
-  height: 70rpx;
+  padding: 0 30rpx;
+  height: 100rpx;
   display: flex;
   align-items: center;
 }
@@ -41,41 +39,17 @@
   width: 100%;
 }
 
-.thead{
-  position: fixed;
-  top: 70rpx;
-  left: 0;
-  right: 0;
-  background: #27ccc0;
+
+.weui-form-preview{
+    margin-bottom: 25px;
+}
+.product-list{
+  margin-top: 100rpx;
+  background: #f8f8f8;
+}
+.product-list .page__title{
+  background: #0bb20c;
   color: #fff;
   text-align: center;
-}
-.tbody{
-  margin-top: 140rpx;
-}
-
-.thead view, .tbody .list view{
-  display: inline-block;
-  height: 70rpx;
-  border-left: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-.tbody .list view{
-  padding-left: 6rpx;
-}
-
-.thead view:nth-child(1), .tbody .list view:nth-child(1){
-  width: 30%;
-}
-.thead view:nth-child(2), .tbody .list view:nth-child(2){
-  width: 50%;
-}
-.thead view:nth-child(3), .tbody .list view:nth-child(3){
-  width: 20%;
-}
-
-.tbody .list:nth-child(odd){
-  background: #F4F4F4;
+  padding: 20rpx 0;
 }

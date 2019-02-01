@@ -2,7 +2,7 @@ import regeneratorRuntime from '../packages/runtime.js';
 import { wxLogin, wxRequest} from 'util.js';
 
 // 服务器接口地址
-const host = 'http://larabbs.test/api'
+const host = 'https://www.jsjie.top/api'
 
 /**
  * 普通请求
